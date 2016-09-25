@@ -1,0 +1,59 @@
+<div class="modal-header">
+    <button type="button" class="close rr-modal-close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">选择要关联的记录</h4>
+</div>
+<div class="control-list">
+    <table class="table data" data-control="rowlink">
+        <thead>
+        <tr>
+            <th><span>操作</span></th>
+            <th><span>标题</span></th>
+            <th><span>发布时间</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($records as $record): ?>
+            <tr>
+                <td class="column-button nolink">
+                    <a
+                        data-id="<?php echo $record['id'];?>"
+                        data-title="<?php echo $record['title'];?>"
+                        data-image="<?php echo Cms\Classes\MediaLibrary::url($record['image']);?>"
+                        data-content="<?php echo $record['content'];?>"
+                        href="javascript:void(0)"
+                        class="btn btn-warning btn-sm rr-add-related">
+                        添加关联
+                    </a>
+                </td>
+                <td><?=$record['title'] ?></td>
+                <td><?=$record['published_at'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="list-footer">
+        <div class="list-pagination">
+            <div class="control-pagination">
+                <?php $startRecord = ($records->currentPage() - 1) * $records->perPage() + 1;?>
+                <?php $endRecord = min($records->currentPage() * $records->perPage(), $records->total());?>
+                <span class="page-iteration"><?=$startRecord?>-<?=$endRecord?> of <?=$records->total();?></span>
+                <?php if ($records->currentPage() != 1): ?>
+                <a
+                    data-page="<?php echo $records->currentPage() - 1;?>"
+                    href="javascript:void();"
+                    class="rr-pagination page-back"
+                    title="Previous page">
+                </a>
+                <?php endif; ?>
+                <?php if ($records->currentPage() != $records->lastPage()): ?>
+                <a
+                    data-page="<?php echo $records->currentPage() + 1;?>"
+                    href="javascript:void();"
+                    class="rr-pagination page-next"
+                    title="Next page">
+                </a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
