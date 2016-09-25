@@ -1,0 +1,93 @@
+<script>
+    var CONFIG = {};
+    CONFIG.titleField = '<?php echo $this->vars['titleField'] ?>';
+    CONFIG.imageField = '<?php echo $this->vars['imageField'] ?>';
+    CONFIG.contentField = '<?php echo $this->vars['contentField'] ?>';
+    CONFIG.recordId = '<?php echo $this->vars['recordId'] ?>';
+    CONFIG.recordsPerPage = '<?php echo $this->vars['recordsPerPage'] ?>';
+    CONFIG.whereClause = '<?php echo $this->vars['whereClause'] ?>';
+    CONFIG.widgetDir = '<?php echo $this->vars['widgetDir'] ?>';
+    CONFIG.inputId = '<?php echo $this->getId() ?>';
+    CONFIG.modelClass = '<?php echo str_replace('\\', '\\\\', $this->vars['modelClass']) ?>';
+</script>
+<div class="input-group">
+    <input
+        type="text"
+        name="<?php echo $name ?>"
+        id="<?php echo $this->getId() ?>"
+        value="<?php echo json_encode($value); ?>"
+        placeholder=""
+        class="form-control"
+        autocomplete="off"
+        style="display: none;"
+    >
+</div>
+
+<div class="row" id="related-entities">
+    <?php foreach ($records as $record): ?>
+        <div class="col s12 m3 related-entity-card" data-id="<?php echo $record['id'] ?>">
+            <div class="card small">
+                <div class="card-image">
+                    <img src="<?php echo $record['rr_image'];?>">
+                    <span class="card-title"><?php echo $record['rr_title'];?></span>
+                </div>
+                <div class="card-content">
+                    <?php echo $record['rr_content'];?>
+                </div>
+                <div class="card-action">
+                    <table style="width: 100%;text-align: center;">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)" style="margin-right: 0;" class="rr-backward">
+                                    <i class="icon-chevron-left"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" style="margin-right: 0;" class="rr-remove">移除</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" style="margin-right: 0;" class="rr-forward">
+                                    <i class="icon-chevron-right"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+
+    <div class="col s12 m3 related-entity-control-card">
+        <div class="card small">
+            <div class="card-image">
+                <img src="<?php echo $this->vars['widgetDir'];?>/assets/img/default.png">
+                <span class="card-title">标题</span>
+            </div>
+            <div class="card-content">
+                <p>内容</p>
+            </div>
+            <div class="card-action">
+                <table style="width: 100%;text-align: center;">
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <a
+                                href="javascript:void(0)"
+                                style="margin-right: 0;"
+                                class="rr-add">
+                                关联更多
+                            </a>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
