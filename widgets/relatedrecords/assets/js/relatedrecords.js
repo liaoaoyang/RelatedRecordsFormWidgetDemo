@@ -44,7 +44,6 @@
         $('.related-entity-card').each(function () {
             formData.push($(this).data('id'));
         });
-        console.log(formData);
         $('#' + CONFIG.inputId).val(JSON.stringify(formData));
     };
 
@@ -145,7 +144,6 @@
         $(document).on('click', '.rr-pagination', fetchRelatedRecords);
 
         $(document).on('ajaxSuccess', '.rr-pagination', function (ev, ctx, data, status, jXhr) {
-            console.log(ev, ctx, data, status, jXhr);
             var $thisRRModalClose = $(this).parents('.rr-modal-close');
             $(document).find('.rr-modal-close').each(function () {
                 if ($(this) != $thisRRModalClose) {
